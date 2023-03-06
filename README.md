@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Lotus - Auto Sales microservice and Vehicles React (Inventory Microservice)
 * Person 2 - Which microservice?
 
 ## Design
