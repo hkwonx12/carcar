@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ManufacturerList from './inventorycomponents/Manufacturerlist';
+import ManufacturerList from './inventorycomponents/ManufacturerList';
 import ManufacturerForm from './inventorycomponents/ManufacturerForm';
 import AutomobileList from './inventorycomponents/AutomobileList';
 import AutomobileForm from './inventorycomponents/AutomobileForm';
