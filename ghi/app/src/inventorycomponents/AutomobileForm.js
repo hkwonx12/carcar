@@ -6,7 +6,7 @@ function AutomobileForm() {
         color: '',
         year:'',
         vin:'',
-        model:'',
+        model_id:'',
     })
 
     const fetchData = async () => {
@@ -16,10 +16,10 @@ function AutomobileForm() {
           const data = await response.json();
           setModels(data.models);
         }
-
-        useEffect(() => {
-            fetchData();
-          }, []);
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const handleSubmit = async(event) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ function AutomobileForm() {
                 color: '',
                 year:'',
                 vin:'',
-                model:'',
+                model_id:'',
             });
         }
     }
@@ -68,15 +68,15 @@ function AutomobileForm() {
                   <label htmlFor="year">Year</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input value={formData.vin} onChange={handleChange} placeholder="year" required type="text" name="year" id="year" className="form-control" />
+                  <input value={formData.vin} onChange={handleChange} placeholder="vin" required type="text" name="vin" id="vin" className="form-control" />
                   <label htmlFor="color">Vin</label>
                 </div>
                 <div className="mb-3">
-                  <select value={formData.model} onChange={handleChange} required name="model" id="model" className="form-select">
+                  <select value={formData.model_id} onChange={handleChange} required name="model_id" id="model_id" className="form-select">
                     <option value="">Choose a model</option>
                     {models.map(model => {
                       return (
-                        <option key={model.href} value={model.href}>
+                        <option key={model.id} value={model.id}>
                           {model.name}
                         </option>
                       );
@@ -91,5 +91,5 @@ function AutomobileForm() {
     )
 
 }
-}
+
 export default AutomobileForm;
