@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ManufacturerList from './inventorycomponents/Manufacturerlist';
 import ManufacturerForm from './inventorycomponents/ManufacturerForm';
 import AutomobileList from './inventorycomponents/AutomobileList';
-import MainPage from './MainPage';
-import Nav from './Nav';
+import AutomobileForm from './inventorycomponents/AutomodileForm';
 import ModelsList from './inventorycomponents/ModelsList';
 import ModelForm from './inventorycomponents/ModelForm';
+import MainPage from './MainPage';
+import Nav from './Nav';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           </Route>
           <Route path="automobiles">
             <Route index element={<AutomobileList />}/>
+            <Route path="new" element={<AutomobileForm />}/>
           </Route>
         </Routes>
       </div>
