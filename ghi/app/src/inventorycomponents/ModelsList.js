@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 function ModelsList() {
     const [models, setModels] = useState([]);
 
-    const handleSubmit = async (event) => {
-        const value = event.target.value;
-        // Create Url for specific model to be deleted
-        const modelUrl = `http://localhost:8090/api/models/${value}/`;
+    // const handleSubmit = async (event) => {
+    //     const value = event.target.value;
+    //     // Create Url for specific model to be deleted
+    //     const modelUrl = `http://localhost:8090/api/models/${value}/`;
 
     //     // Format the delete method to send to the server to delete the hat.
     //     const deleteConfig = {
@@ -26,10 +26,10 @@ function ModelsList() {
     //    const data = await response.json();
 
     //    setModels(models.filter(model => String(model.id) !== value));
-    }
+    // }
 
     const getData = async () => {
-        // Url for getting the list of hats
+        // Url for getting the list of models
         const modelsUrl = "http://localhost:8100/api/models/";
         // Get the server response
         const response = await fetch(modelsUrl);
@@ -43,7 +43,7 @@ function ModelsList() {
 
     useEffect(()=>{
         getData()
-    }, [])
+    }, []);
 
     return (
         <>
@@ -62,7 +62,7 @@ function ModelsList() {
                         <tr key={model.id}>
                             <td>{ model.name }</td>
                             <td>{ model.manufacturer.name }</td>
-                            <td>{ model.picture_url }</td>
+                            <td><img src={model.picture_url} width="200" /></td>
                             {/* <td>
                                 <button onClick={handleSubmit} value={model.id} className="btn btn-danger">Delete</button>
                             </td> */}
