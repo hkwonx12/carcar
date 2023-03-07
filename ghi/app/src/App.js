@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ManufacturerList from './inventorycomponents/Manufacturerlist';
 import ManufacturerForm from './inventorycomponents/ManufacturerForm';
 import AutomobileList from './inventorycomponents/AutomobileList';
-import AutomobileForm from './inventorycomponents/AutomodileForm';
+import AutomobileForm from './inventorycomponents/AutomobileForm';
 import ModelsList from './inventorycomponents/ModelsList';
 import ModelForm from './inventorycomponents/ModelForm';
 import MainPage from './MainPage';
