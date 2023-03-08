@@ -1,6 +1,6 @@
 // Return a form for creating a new sales person.
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 function SalesPersonForm () {
     // Store the form state; initialize fields to empty strings
@@ -10,7 +10,6 @@ function SalesPersonForm () {
     })
     // Handle when the form changes
     const handleChange = (event) => {
-        const value = event.target.value;
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
@@ -33,7 +32,6 @@ function SalesPersonForm () {
         // Wait for server response when sending new sales person data
         const salesDataResponse = await fetch(salesUrl, fetchConfig);
         if (salesDataResponse.ok) {
-            const newSalesPerson = await salesDataResponse.json();
             setFormData({
                 name: "",
                 employee_num: ""

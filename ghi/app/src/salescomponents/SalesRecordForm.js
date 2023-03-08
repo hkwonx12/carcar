@@ -12,7 +12,6 @@ function SalesRecordForm () {
     })
     // Handle when the form changes
     const handleChange = (event) => {
-        const value = event.target.value;
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
@@ -69,7 +68,6 @@ function SalesRecordForm () {
         // Wait for server response when sending new sales record data
         const salesRecordResponse = await fetch(salesUrl, fetchConfig);
         if (salesRecordResponse.ok) {
-            const newSalesRecord = await salesRecordResponse.json();
             setFormData({
                 auto: "",
                 salesperson: "",

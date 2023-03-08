@@ -9,6 +9,7 @@ import MainPage from './MainPage';
 import SalesPersonForm from './salescomponents/SalesPersonForm';
 import CustomerForm from './salescomponents/CustomerForm';
 import SalesList from './salescomponents/SalesList';
+import SalesPersonHistory from './salescomponents/SalesPersonHistory';
 import SalesRecordForm from './salescomponents/SalesRecordForm';
 import Nav from './Nav';
 
@@ -34,6 +35,7 @@ function App() {
           </Route>
           <Route path="sales">
             <Route index element={<SalesList />}/>
+            <Route path="salespersonhistory" element={<SalesPersonHistory />}/>
             <Route path="newsalesperson" element={<SalesPersonForm />}/>
             <Route path="newcustomer" element={<CustomerForm />}/>
             <Route path="newsalesrecord" element={<SalesRecordForm />}/>
