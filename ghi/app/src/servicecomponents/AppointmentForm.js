@@ -37,13 +37,13 @@ function AppointmentForm() {
 
         const response = await fetch(appointmentsUrl, fetchConfig);
         if (response.ok) {
-            setFormData({
-                vin:'',
-                customer_name:'',
-                appointment:'',
-                technician:'',
-                reason:'',
-            })
+          setFormData({
+              vin:'',
+              customer_name:'',
+              appointment:'',
+              technician:'',
+              reason:'',
+          })
         }
     };
 

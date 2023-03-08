@@ -16,12 +16,12 @@ def get_automobile():
     url = "http://inventory-api:8000/api/automobiles/"
     response = requests.get(url)
     content = json.loads(response.content)
-    for auto in content["autos"]:
+    for automobiles in content["autos"]:
         AutomobileVO.objects.update_or_create(
-            import_href = auto["href"],
+            import_href = automobiles["href"],
             defaults={
-            "vin": auto["vin"],
-            },
+            "vin": automobiles["vin"],
+            }
         )
 
 
@@ -32,7 +32,7 @@ def poll():
             get_automobile()
         except Exception as e:
             print(e, file=sys.stderr)
-        time.sleep(60)
+        time.sleep(20)
 
 
 if __name__ == "__main__":

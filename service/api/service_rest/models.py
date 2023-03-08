@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     vin = models.CharField(max_length=17, unique=True)
@@ -18,7 +17,7 @@ class Appointment(models.Model):
     customer_name = models.CharField(max_length=100)
     appointment = models.DateTimeField(null=True)
     reason = models.CharField(max_length=200)
-    vip = models.BooleanField(default=False, null=True, blank=True)
+    vip = models.BooleanField(blank=True, default=False, null=True)
     finished = models.BooleanField(default=False, null=True, blank=True)
     technician = models.ForeignKey(
         Technician,

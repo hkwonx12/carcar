@@ -2,68 +2,23 @@ from django.shortcuts import render
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .encoders import TechnicianEncoder, AppointmentListEncoder, AppointmentDetailEncoder
+from .encoders import TechnicianEncoder, AppointmentListEncoder, AppointmentDetailEncoder, AutomobileVOEncoder
 from .models import Technician, Appointment, AutomobileVO
 # Create your views here.
 
-
-@require_http_methods(["GET", "POST"])
-def api_technicians(request):
+@require_http_methods(["GET"])
+def api_list_vins(request):
     if request.method == "GET":
-        technicians = Technician.objects.all()
+        vin = AutomobileVO.objects.all()
         return JsonResponse(
-            {"technicians": technicians},
-            encoder = TechnicianEncoder,
-            safe=False,
-        )
-    else:
-        content = json.loads(request.body)
-        technician = Technician.objects.create(**content)
-        return JsonResponse(
-            technician,
-            encoder=TechnicianEncoder,
+            {"vin": vin},
+            encoder=AutomobileVOEncoder,
             safe=False,
         )
 
-@require_http_methods(["DELETE", "GET", "PUT"])
-def api_technician(request, id):
-    if request.method == "GET":
-        try:
-            technician = Technician.objects.get(id=id)
-            return JsonResponse(
-                technician,
-                encoder=TechnicianEncoder,
-                safe=False
-            )
-        except Technician.DoesNotExist:
-            response = JsonResponse({"message": "Technician does not exist"})
-            response.status_code = 404
-            return response
-    elif request.method == "DELETE":
-        try:
-            count, _ = Technician.objects.filter(id=id).delete()
-            return JsonResponse({"delete": count > 0 })
-        except Technician.DoesNotExist:
-            return JsonResponse({"message": "Technician does not exist"})
-    else:
-        content = json.loads(request.body)
-        Technician.objects.filter(id=id).update(**content)
-        try:
-            technician = Technician.objects.get(id=id)
-            return JsonResponse(
-                technician,
-                encoder=TechnicianEncoder,
-                safe=False
-            )
-        except Technician.DoesNotExist:
-            return JsonResponse(
-                {"message": f"Invalid technician id: {id}" },
-                status=404
-            )
-
 
 @require_http_methods(["GET", "POST"])
-def api_list_appointments(request):
+def api_list_appointments(request, vin=False):
     if request.method == "GET":
         appointments = Appointment.objects.filter(finished = False)
         return JsonResponse(
@@ -82,13 +37,20 @@ def api_list_appointments(request):
                 {"message": "Invalid tech"},
                 status = 404,
             )
-
-        appointment = Appointment.objects.create(**content)
+        try:
+            vin = content["vin"]
+            vip = AutomobileVO.objects.get(vin = vin)
+            if vip:
+                content["vip"] = True
+                appointment = Appointment.objects.create(**content)
+        except AutomobileVO.DoesNotExist:
+            appointment = Appointment.objects.create(**content)
         return JsonResponse(
             appointment,
-            encoder=AppointmentListEncoder,
+            encoder=AppointmentDetailEncoder,
             safe=False,
         )
+
 
 @require_http_methods(["GET", "DELETE", "PUT"])
 def api_detail_appointment(request, id):
@@ -126,4 +88,20 @@ def api_detail_appointment(request, id):
                 status=404
             )
 
-
+@require_http_methods(["GET", "POST"])
+def api_technicians(request):
+    if request.method == "GET":
+        technicians = Technician.objects.all()
+        return JsonResponse(
+            {"technicians": technicians},
+            encoder = TechnicianEncoder,
+            safe=False,
+        )
+    else:
+        content = json.loads(request.body)
+        technician = Technician.objects.create(**content)
+        return JsonResponse(
+            technician,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )

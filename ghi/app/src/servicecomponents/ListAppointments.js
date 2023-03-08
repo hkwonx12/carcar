@@ -74,6 +74,7 @@ function ListAppointments () {
                     <tr>
                         <th>Vin</th>
                         <th>Customer Name</th>
+                        <th>VIP</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Technician</th>
@@ -89,6 +90,7 @@ function ListAppointments () {
                             <tr key={appointment.id}>
                                 <td>{appointment.vin}</td>
                                 <td>{appointment.customer_name}</td>
+                                <td>{appointment.vip ? "True": "False"}</td>
                                 <td>{convertDate(appointment.appointment)}</td>
                                 <td>{convertTime(appointment.appointment)}</td>
                                 <td>{appointment.technician.name}</td>
