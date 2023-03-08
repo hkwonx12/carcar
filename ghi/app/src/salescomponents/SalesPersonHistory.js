@@ -24,6 +24,17 @@ function SalesPersonHistory() {
         setFilterTerm(e.target.value);
     };
 
+    // Allow for the user to search using upper or lower case.
+    const getSalesFiltered = () => {
+        if (filterTerm === " ") {
+            return sales;
+        } else {
+            return sales.filter((sale) =>
+                sale.salesperson.name.toLowerCase().includes(filterTerm.toLowerCase())
+            );
+        }
+    };
+
     return (
         <>
             <h1>Sales Person Sales History</h1>
@@ -40,7 +51,7 @@ function SalesPersonHistory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {sales.filter((sale) => sale.salesperson.name.includes(filterTerm)).map(sale => {
+                    {getSalesFiltered().map(sale => {
                     return (
                         <tr key={sale.id}>
                             <td>{ sale.salesperson.name }</td>
