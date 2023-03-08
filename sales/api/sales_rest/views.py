@@ -9,7 +9,7 @@ from .encoders import SalesPersonEncoder, CustomerEncoder, SalesRecordEncoder
 @require_http_methods(["POST", "GET"])
 def api_salesperson(request):
     """
-    POST: creates a new instance of the SalesPerson model
+    POST: creates a new sales person
     GET: returns the list of sales people
     """
     if request.method == "POST":
@@ -32,8 +32,8 @@ def api_salesperson(request):
 @require_http_methods(["POST", "GET"])
 def api_customer(request):
     """
-    POST: creates a new instance of the Customer model
-    GET: returns the list of sales customers
+    POST: creates a new customer
+    GET: returns the list of customers
     """
     if request.method == "POST":
         new_customer = json.loads(request.body)
