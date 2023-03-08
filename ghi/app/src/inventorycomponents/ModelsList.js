@@ -1,7 +1,7 @@
 // Display the list of models and their details.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function ModelsList() {
@@ -20,7 +20,7 @@ function ModelsList() {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getData()
     }, []);
 
@@ -37,16 +37,13 @@ function ModelsList() {
                 </thead>
                 <tbody>
                     {models.map(model => {
-                    return (
-                        <tr key={model.id}>
-                            <td>{ model.name }</td>
-                            <td>{ model.manufacturer.name }</td>
-                            <td><img src={model.picture_url} width="200" /></td>
-                            {/* <td>
-                                <button onClick={handleSubmit} value={model.id} className="btn btn-danger">Delete</button>
-                            </td> */}
-                        </tr>
-                    )
+                        return (
+                            <tr key={model.id}>
+                                <td>{model.name}</td>
+                                <td>{model.manufacturer.name}</td>
+                                <td><img src={model.picture_url} width="200" /></td>
+                            </tr>
+                        )
                     })}
                 </tbody>
             </table>

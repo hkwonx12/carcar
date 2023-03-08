@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-function ManufacturerForm() {
+function TechnicianForm() {
   const [formData, setFormData] = useState({
     name: '',
+    employee_number: '',
   })
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
-
+    const techUrl = "http://localhost:8080/api/technicians/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),
@@ -18,14 +18,14 @@ function ManufacturerForm() {
       },
     };
 
-    const response = await fetch(manufacturerUrl, fetchConfig);
-
+    const response = await fetch(techUrl, fetchConfig);
     if (response.ok) {
       setFormData({
         name: '',
-      });
+        employee_number: '',
+      })
     }
-  }
+  };
 
   const handleChange = (event) => {
     setFormData({
@@ -38,11 +38,15 @@ function ManufacturerForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create a manufacturer</h1>
-          <form onSubmit={handleSubmit} id="create-manufacturer-form">
+          <h1>Enter a technician</h1>
+          <form onSubmit={handleSubmit} id="create-technician-form">
             <div className="form-floating mb-3">
               <input value={formData.name} onChange={handleChange} placeholder="name" required type="text" name="name" id="name" className="form-control" />
               <label htmlFor="name">Name</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input value={formData.employee_number} onChange={handleChange} placeholder="employee_number" required type="number" name="employee_number" id="employee_number" className="form-control" />
+              <label htmlFor="employee_number">Employee Number</label>
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
@@ -50,7 +54,6 @@ function ManufacturerForm() {
       </div>
     </div>
   )
-
 }
 
-export default ManufacturerForm;
+export default TechnicianForm;
