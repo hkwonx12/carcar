@@ -7,7 +7,8 @@ import ModelsList from './inventorycomponents/ModelsList';
 import ModelForm from './inventorycomponents/ModelForm';
 import TechnicianForm from './servicecomponents/TechnicianForm';
 import AppointmentForm from './servicecomponents/AppointmentForm';
-import ListAppointments from './servicecomponents/ListAppointments'
+import ListAppointments from './servicecomponents/ListAppointments';
+import AppointmentsHistory from './servicecomponents/AppointmentHistory';
 import MainPage from './MainPage';
 import Nav from './Nav';
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="appointments">
             <Route index element={<ListAppointments />} />
             <Route path="new" element={<AppointmentForm />}/>
+            <Route path="history" element={<AppointmentsHistory/>}/>
           </Route>
 
         </Routes>

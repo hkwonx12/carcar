@@ -37,6 +37,9 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/appointments/new">Enter a service appointment</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/appointments/history">Service Appointment History</NavLink>
+            </li>
           </ul>
         </div>
       </div>
