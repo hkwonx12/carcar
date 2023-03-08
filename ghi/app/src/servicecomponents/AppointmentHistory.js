@@ -68,7 +68,7 @@ function AppointmentsHistory() {
                     <tbody>
                         {getAppointmentFiltered() && getAppointmentFiltered().map((appointment) => {
                             return (
-                                <tr key={appointment.vin}>
+                                <tr key={appointment.id}>
                                     <td>{appointment.vin}</td>
                                     <td>{appointment.customer_name}</td>
                                     <td>{appointment.vip ? "True" : "False"}</td>
