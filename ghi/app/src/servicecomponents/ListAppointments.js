@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-function ListAppointments () {
+function ListAppointments() {
     const [appointments, setAppointments] = useState([])
 
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/appointments/');
 
-        if(response.ok) {
+        if (response.ok) {
             const data = await response.json();
             setAppointments(data.appointments)
         }
@@ -43,7 +43,7 @@ function ListAppointments () {
 
         const fetchConfigs = {
             method: "PUT",
-            body: JSON.stringify({finished: true}),
+            body: JSON.stringify({ finished: true }),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -51,7 +51,7 @@ function ListAppointments () {
         const response = await fetch(url, fetchConfigs)
         const data = await response.json()
 
-        setAppointments(appointments.filter(appointment => String(appointment.id) !==e.target.id))
+        setAppointments(appointments.filter(appointment => String(appointment.id) !== e.target.id))
     }
 
     function convertDate(appointment) {
@@ -60,9 +60,9 @@ function ListAppointments () {
         return date;
     }
 
-    function convertTime(appointment){
+    function convertTime(appointment) {
         const dateTime = new Date(appointment);
-        const time = dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const time = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         return time;
     }
 
@@ -90,7 +90,7 @@ function ListAppointments () {
                             <tr key={appointment.id}>
                                 <td>{appointment.vin}</td>
                                 <td>{appointment.customer_name}</td>
-                                <td>{appointment.vip ? "True": "False"}</td>
+                                <td>{appointment.vip ? "True" : "False"}</td>
                                 <td>{convertDate(appointment.appointment)}</td>
                                 <td>{convertTime(appointment.appointment)}</td>
                                 <td>{appointment.technician.name}</td>

@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .encoders import TechnicianEncoder, AppointmentListEncoder, AppointmentDetailEncoder, AutomobileVOEncoder
 from .models import Technician, Appointment, AutomobileVO
-# Create your views here.
+
 
 @require_http_methods(["GET"])
 def api_list_vins(request):
@@ -87,6 +87,7 @@ def api_detail_appointment(request, id):
                 {"message": f"Invalid appointment id: {id}"},
                 status=404
             )
+
 
 @require_http_methods(["GET", "POST"])
 def api_technicians(request):

@@ -14,6 +14,7 @@ function AppointmentsHistory() {
         }
     };
 
+
     useEffect(() => {
         getData()
     }, []);
@@ -23,8 +24,9 @@ function AppointmentsHistory() {
         setFilterTerm(event.target.value);
     };
 
+
     const getAppointmentFiltered = () => {
-        if(filterTerm === ""){
+        if (filterTerm === "") {
             return []
         }
         return appointments.filter((appointment) =>
@@ -39,6 +41,7 @@ function AppointmentsHistory() {
         return date;
     }
 
+
     function convertTime(appointment) {
         const dateTime = new Date(appointment);
         const time = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -49,7 +52,7 @@ function AppointmentsHistory() {
     return (
         <div>
             <h1>Search Service Appointment</h1>
-            <input onChange={handleFilterChange} />
+            <input onChange={handleFilterChange} placeholder="Enter VIN" />
 
             <hr />
             <div className='container'>
