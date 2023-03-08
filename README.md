@@ -3,14 +3,17 @@
 Team:
 
 * Lotus - Auto Sales microservice and Vehicles React (Inventory Microservice)
-* Person 2 - Which microservice?
+* Helen - Service microservice and Manufacturer/Automobile React (Inventory Microservice)
 
 ## Design
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+AutomobileVO created to poll data from Inventory Automobile model in order to pull VIN numbers to determine VIP.
+
+Appointment model created to list, create, modify, and delete service appointments.
+
+Technician model created in order to create a technician to assign to the service appointments.
 
 ## Sales microservice
 
