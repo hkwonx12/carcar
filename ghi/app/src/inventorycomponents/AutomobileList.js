@@ -1,25 +1,25 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AutomobileList() {
     const [autos, setAutos] = useState([])
 
     const getData = async () => {
-    const response = await fetch("http://localhost:8100/api/automobiles/");
+        const response = await fetch("http://localhost:8100/api/automobiles/");
 
-    if (response.ok) {
-        const data = await response.json();
-        setAutos(data.autos)
-    }
+        if (response.ok) {
+            const data = await response.json();
+            setAutos(data.autos)
+        }
     }
 
-    useEffect(()=>{
-    getData()
+    useEffect(() => {
+        getData()
     }, [])
 
 
 
-  return (
-    <div className='container'>
+    return (
+        <div className='container'>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -45,7 +45,7 @@ function AutomobileList() {
                 </tbody>
             </table>
         </div>
-  );
+    );
 
 }
 

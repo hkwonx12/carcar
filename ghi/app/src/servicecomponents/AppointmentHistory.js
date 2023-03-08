@@ -6,7 +6,7 @@ function AppointmentsHistory() {
 
 
     const getData = async () => {
-        const response = await fetch('http://localhost:8080/api/appointments/');
+        const response = await fetch('http://localhost:8080/api/appointments/history/');
 
         if (response.ok) {
             const data = await response.json();
@@ -26,9 +26,6 @@ function AppointmentsHistory() {
 
 
     const getAppointmentFiltered = () => {
-        if (filterTerm === "") {
-            return []
-        }
         return appointments.filter((appointment) =>
             appointment["vin"].toLowerCase().includes(filterTerm.toLowerCase())
         );
@@ -88,6 +85,6 @@ function AppointmentsHistory() {
         </div>
     );
 }
-//&& is to prevent the website from crashing (if there is data there then do the mapping)
+
 
 export default AppointmentsHistory;

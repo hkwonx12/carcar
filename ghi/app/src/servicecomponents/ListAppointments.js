@@ -37,7 +37,6 @@ function ListAppointments() {
     };
 
 
-
     const handleFinish = async (e) => {
         const url = `http://localhost:8080/api/appointments/${e.target.id}/`
 
@@ -54,11 +53,13 @@ function ListAppointments() {
         setAppointments(appointments.filter(appointment => String(appointment.id) !== e.target.id))
     }
 
+
     function convertDate(appointment) {
         const dateTime = new Date(appointment);
         const date = dateTime.toLocaleDateString();
         return date;
     }
+
 
     function convertTime(appointment) {
         const dateTime = new Date(appointment);

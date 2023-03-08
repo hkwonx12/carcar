@@ -1,9 +1,9 @@
 // This function returns a form for entering a new hat into
 // the database.
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-function ModelForm () {
+function ModelForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -91,7 +91,7 @@ function ModelForm () {
                     <form onSubmit={handleSubmit} id="create-conference-form">
                         <div className="mb-3">
                             <label htmlFor="fabric">Name</label>
-                            <input onChange={handleNameChange} required type="text" name="name" value={name} id="name" className="form-control"/>
+                            <input onChange={handleNameChange} required type="text" name="name" value={name} id="name" className="form-control" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="pictureurl" className="form-label">Picture URL</label>
@@ -99,15 +99,15 @@ function ModelForm () {
                         </div>
                         <div className="mb-3">
                             <select onChange={handleMakeChange} required id="make" name="make" value={make} className="form-select">
-                            <option value="">Choose a manufacturer</option>
-                            {makes.map(make => {
-                                return (
-                                    <option key={make.id} value={make.id}>
-                                        {make.name}
-                                    </option>
-                                )
-                            })
-                            }
+                                <option value="">Choose a manufacturer</option>
+                                {makes.map(make => {
+                                    return (
+                                        <option key={make.id} value={make.id}>
+                                            {make.name}
+                                        </option>
+                                    )
+                                })
+                                }
                             </select>
                         </div>
                         <button className="btn btn-primary">Create</button>

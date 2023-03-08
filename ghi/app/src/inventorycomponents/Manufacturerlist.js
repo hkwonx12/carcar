@@ -12,29 +12,29 @@ function ManufacturerList() {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getData()
   }, [])
 
   return (
     <div>
-        <h1>Manufacturers</h1>
-        <table className="table table-striped">
+      <h1>Manufacturers</h1>
+      <table className="table table-striped">
         <thead>
-            <tr>
+          <tr>
             <th>Name</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            {manufacturers.map(manufacturer => {
+          {manufacturers.map(manufacturer => {
             return (
-                <tr key={manufacturer.id}>
-                <td>{ manufacturer.name }</td>
-                </tr>
+              <tr key={manufacturer.id}>
+                <td>{manufacturer.name}</td>
+              </tr>
             );
-            })}
+          })}
         </tbody>
-        </table>
+      </table>
     </div>
   );
 }
