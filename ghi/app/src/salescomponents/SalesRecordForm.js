@@ -57,7 +57,6 @@ function SalesRecordForm () {
         event.preventDefault();
 
         // Send the form data to the sales server
-        console.log("Form Data: ", formData);
         const salesUrl = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
             method: "post",

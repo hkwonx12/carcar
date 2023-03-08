@@ -61,7 +61,6 @@ def api_salesrecords(request):
     """
     if request.method == "POST":
         new_sale = json.loads(request.body)
-        print(f"Sale Data Received: {new_sale}")
 
         # Add InventoryVO object for the auto to the sales record
         auto = InventoryVO.objects.get(vin=new_sale["auto"])
@@ -75,7 +74,6 @@ def api_salesrecords(request):
         customer = Customer.objects.get(id=new_sale["customer"])
         new_sale["customer"] = customer
 
-        print("Sales Record Created: ", new_sale)
         try:
             sale = SalesRecord.objects.create(**new_sale)
             return JsonResponse(
@@ -91,7 +89,6 @@ def api_salesrecords(request):
     else:
         # Get and return the list of sales records
         records = SalesRecord.objects.all()
-        print("Sales Records: ", records)
         return JsonResponse(
             {"sales_records": records},
             encoder=SalesRecordEncoder,
