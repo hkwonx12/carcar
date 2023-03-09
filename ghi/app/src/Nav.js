@@ -39,6 +39,8 @@ function Nav() {
               Sales
               </NavLink>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><NavLink className="dropdown-item" to="/sales">Sales Records</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/sales/newsalesrecord">New Sales Record</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/salespersonhistory">Sales Person History</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/newsalesperson">New SalesPerson</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/newcustomer">New Customer</NavLink></li>

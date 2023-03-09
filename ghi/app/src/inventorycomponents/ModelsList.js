@@ -1,6 +1,5 @@
 // Display the list of models and their details.
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 

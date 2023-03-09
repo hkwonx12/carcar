@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function ManufacturerList() {
   const [manufacturers, setManufacturers] = useState([])
@@ -35,6 +36,7 @@ function ManufacturerList() {
           })}
         </tbody>
       </table>
+      <Link to="/manufacturers/new"><button type="button" className="btn btn-primary">Add a Manufacturer</button></Link>
     </div>
   );
 }
