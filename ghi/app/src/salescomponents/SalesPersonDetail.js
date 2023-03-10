@@ -43,10 +43,6 @@ function SalesPersonDetail () {
                     if (record.salesperson.employee_num === salesPersonData.salesperson.employee_num) {
                         salesRecordsFiltered.push(record);
                     };
-                    console.log("Current record: ", record);
-                    console.log("Sales Person: ", salesPersonData.salesperson.employee_num);
-                    console.log("Salesperson in record: ", record.salesperson.employee_num);
-                    console.log("Current list: ", salesRecordsFiltered);
                 };
                 setSales(salesRecordsFiltered);
             } else {
