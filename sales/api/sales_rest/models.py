@@ -14,7 +14,7 @@ class InventoryVO(models.Model):
 
 class SalesPerson(models.Model):
     name = models.CharField(max_length=200)
-    employee_num = models.CharField(max_length=20, unique=True)
+    employee_num = models.IntegerField(unique=True)
 
     def __str__(self):
         return self.name
@@ -50,6 +50,9 @@ class SalesRecord(models.Model):
         on_delete=models.PROTECT,
     )
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.auto.vin
 
     def get_api_url(self):
         return reverse("api_salesrecord", kwargs={"pk": self.id})

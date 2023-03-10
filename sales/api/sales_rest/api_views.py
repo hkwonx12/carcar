@@ -29,6 +29,37 @@ def api_salesperson(request):
             safe=False,
         )
 
+
+@require_http_methods(["GET", "PUT"])
+def api_salespersondetails(request, id):
+    """
+    GET: returns the salesperson's details
+    PUT: updates the salesperson's details
+    """
+    if request.method == "GET":
+        try:
+            salesperson = SalesPerson.objects.get(employee_num=id)
+            return JsonResponse(
+                {"salesperson": salesperson},
+                encoder=SalesPersonEncoder,
+                safe=False,
+            )
+        except SalesPerson.DoesNotExist:
+            return JsonResponse(
+                {"message": "*******Invalid Employee ID"},
+                status=404,
+            )
+    else:
+        content = json.loads(request.body)
+        SalesPerson.objects.filter(employee_num=id).update(**content)
+        salesperson = SalesPerson.objects.get(employee_num=id)
+        return JsonResponse(
+            salesperson,
+            encoder=SalesPersonEncoder,
+            safe=False,
+        )
+
+
 @require_http_methods(["POST", "GET"])
 def api_customer(request):
     """
@@ -83,7 +114,7 @@ def api_salesrecords(request):
             )
         except InventoryVO.DoesNotExist:
             return JsonResponse(
-                {"message": "Automobile with this VIN not in inventory"},
+                {"message": "*******Automobile with this VIN not in inventory"},
                 status=404,
             )
     else:

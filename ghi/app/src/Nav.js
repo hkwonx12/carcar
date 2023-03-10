@@ -15,12 +15,14 @@ function Nav() {
               Inventory
               </NavLink>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><NavLink className="dropdown-item" to="/models/new">New Model</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/models">Model List</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/manufacturers/new">New Manufacturer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/models/new">New Model</NavLink></li>
+                <li><hr className="dropdown-divider" /></li>
                 <li><NavLink className="dropdown-item" to="/manufacturers">Manufacturer List</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/automobiles/new">New Automobile</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manufacturers/new">New Manufacturer</NavLink></li>
+                <li><hr className="dropdown-divider" /></li>
                 <li><NavLink className="dropdown-item" to="/automobiles">Automobile List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/automobiles/new">New Automobile</NavLink></li>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -28,10 +30,11 @@ function Nav() {
               Service
               </NavLink>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><NavLink className="dropdown-item" to="/technicians/new">Enter a technician</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/appointments/new">Enter a service appointment</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/appointments/new">Enter a Service Appointment</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/appointments">Service Appointments</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/appointments/history">Service Appointment History</NavLink></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><NavLink className="dropdown-item" to="/technicians/new">Enter a Technician</NavLink></li>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -39,13 +42,14 @@ function Nav() {
               Sales
               </NavLink>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><NavLink className="dropdown-item" to="/sales">Sales Records</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/sales/salesrecords">Sales Records</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/newsalesrecord">New Sales Record</NavLink></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><NavLink className="dropdown-item" to="/sales/staff">Sales Staff</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/salespersonhistory">Sales Person History</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/sales/newsalesperson">New SalesPerson</NavLink></li>
+                <li><hr className="dropdown-divider" /></li>
                 <li><NavLink className="dropdown-item" to="/sales/newcustomer">New Customer</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/sales">Sales Records</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/sales/newsalesrecord">New Sales Record</NavLink></li>
               </ul>
             </li>
           </ul>

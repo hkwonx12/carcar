@@ -1,8 +1,9 @@
 // Display the list of sales records.
 import React from 'react';
 import {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 
-function SalesList() {
+function SalesRecords() {
     const [sales, setSales] = useState([]);
 
     // Get the list of sales records
@@ -11,13 +12,13 @@ function SalesList() {
         const response = await fetch("http://localhost:8090/api/sales/");
         if (response.ok) {
             const data = await response.json();
-            setSales(data.sales_records)
-        }
-    }
+            setSales(data.sales_records);
+        };
+    };
 
     useEffect(()=>{
-        getData()
-    }, [])
+        getData();
+    }, []);
 
     return (
         <>
@@ -46,8 +47,9 @@ function SalesList() {
                     })}
                 </tbody>
             </table>
+            <Link to="/sales/newsalesrecord"><button type="button" className="btn btn-primary">Add a Sales Record</button></Link>
         </>
     );
-}
+};
 
-export default SalesList;
+export default SalesRecords;

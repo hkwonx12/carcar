@@ -1,6 +1,6 @@
 // Return a form for creating a new sales person.
-
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 function SalesPersonForm () {
     // Store the form state; initialize fields to empty strings
