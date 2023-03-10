@@ -36,3 +36,8 @@ class Automobile(models.Model):
 
     def get_api_url(self):
         return reverse("api_automobile", kwargs={"vin": self.vin})
+
+
+class ServicesRentalVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True)
+    mileage = models.PositiveIntegerField(null=True)

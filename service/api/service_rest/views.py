@@ -1,8 +1,8 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .encoders import TechnicianEncoder, AppointmentListEncoder, AppointmentDetailEncoder, AutomobileVOEncoder
-from .models import Technician, Appointment, AutomobileVO
+from .encoders import TechnicianEncoder, AppointmentListEncoder, AppointmentDetailEncoder, AutomobileVOEncoder, RentalEncoder
+from .models import Technician, Appointment, AutomobileVO, Rental
 
 
 @require_http_methods(["GET"])
@@ -116,3 +116,48 @@ def api_technicians(request):
             encoder=TechnicianEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET", "POST"])
+def api_rentals(request):
+    if request.method == "GET":
+        rentals = Rental.objects.all()
+        return JsonResponse(
+            {"rentals": rentals},
+            encoder = RentalEncoder,
+            safe=False,
+        )
+    else:
+        content = json.loads(request.body)
+        appointment = Appointment.objects.get(id=content["appointment"])
+        content["appointment"] = appointment
+        rental = Rental.objects.create(**content)
+        return JsonResponse(
+            rental,
+            encoder=RentalEncoder,
+            safe=False,
+        )
+
+@require_http_methods(["DELETE", "PUT"])
+def api_rental(request, id):
+    if request.method == "DELETE":
+        try:
+            count, _ = Rental.objects.filter(id=id).delete()
+            return JsonResponse({"delete": count > 0})
+        except Rental.DoesNotExist:
+            return JsonResponse({"message": "Rental does not exist"})
+    else:
+        content = json.loads(request.body)
+        Rental.objects.filter(id=id).update(**content)
+        try:
+            rental = Rental.objects.get(id=id)
+            return JsonResponse(
+                rental,
+                encoder=RentalEncoder,
+                safe=False,
+            )
+        except Rental.DoesNotExist:
+            return JsonResponse(
+                {"message": f"Invalid rental id: {id}"},
+                status=404
+            )

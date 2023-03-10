@@ -15,6 +15,8 @@ import CustomerForm from './salescomponents/CustomerForm';
 import SalesList from './salescomponents/SalesList';
 import SalesPersonHistory from './salescomponents/SalesPersonHistory';
 import SalesRecordForm from './salescomponents/SalesRecordForm';
+import ListRentals from './servicecomponents/ListRentals';
+import RentalForm from './servicecomponents/RentalForm';
 import Nav from './Nav';
 
 
@@ -58,6 +60,12 @@ function App() {
             <Route path="newcustomer" element={<CustomerForm />} />
             <Route path="newsalesrecord" element={<SalesRecordForm />} />
           </Route>
+
+          <Route path="rentals">
+            <Route index element={<ListRentals/>} />
+            <Route path="new" element={<RentalForm/>} />
+          </Route>
+
         </Routes>
       </div>
     </BrowserRouter>
