@@ -1,6 +1,4 @@
 // Display the list of models and their details.
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +17,23 @@ function ModelsList() {
             setModels(data.models);
         }
     }
+
+    const handleDelete = async (event) => {
+        const value = event.target.value;
+        const modelUrl = `http://localhost:8100/api/models/${value}/`;
+
+        const deleteConfig = {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        const response = await fetch(modelUrl, deleteConfig);
+        const data = await response.json();
+
+        setModels(models.filter(model => String(model.id) !== value));
+    };
 
     useEffect(() => {
         getData()
@@ -42,6 +57,9 @@ function ModelsList() {
                                 <td>{model.name}</td>
                                 <td>{model.manufacturer.name}</td>
                                 <td><img src={model.picture_url} width="200" /></td>
+                                <td>
+                                    <button onClick={handleDelete} value={model.id} className="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         )
                     })}

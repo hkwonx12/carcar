@@ -1,4 +1,6 @@
+// Display the list of manufacturers and their details.
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function ManufacturerList() {
   const [manufacturers, setManufacturers] = useState([])
@@ -12,7 +14,7 @@ function ManufacturerList() {
     }
   }
 
-  const handleSubmit = async (event) => {
+  const handleDelete = async (event) => {
     const value = event.target.value;
     const manufacturerUrl = `http://localhost:8100/api/manufacturers/${value}/`;
 
@@ -21,15 +23,13 @@ function ManufacturerList() {
         headers: {
             "Content-Type": "application/json"
         }
-   };
+    };
 
-   // Send the delete method to the server with the url to the specific
-   // hat we will delete.
-   const response = await fetch(manufacturerUrl, deleteConfig);
-   const data = await response.json();
+    const response = await fetch(manufacturerUrl, deleteConfig);
+    const data = await response.json();
 
-   setManufacturers(manufacturers.filter(manufacturer => String(manufacturer.id) !== value));
-}
+    setManufacturers(manufacturers.filter(manufacturer => String(manufacturer.id) !== value));
+  }
 
   useEffect(() => {
     getData()
@@ -50,13 +50,14 @@ function ManufacturerList() {
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>
                 <td>
-                      <button onClick={handleSubmit} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                      <button onClick={handleDelete} value={manufacturer.id} className="btn btn-danger">Delete</button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <Link to="/manufacturers/new"><button type="button" className="btn btn-primary">Add a Manufacturer</button></Link>
     </div>
   );
 }
