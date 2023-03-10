@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ManufacturerList from './inventorycomponents/ManufacturerList';
+import ManufacturerDetail from './inventorycomponents/ManufacturerDetail';
 import ManufacturerForm from './inventorycomponents/ManufacturerForm';
 import AutomobileList from './inventorycomponents/AutomobileList';
 import AutomobileForm from './inventorycomponents/AutomobileForm';
@@ -33,6 +34,7 @@ function App() {
 
           <Route path="manufacturers" >
             <Route index element={<ManufacturerList />} />
+            <Route path=":id" element={<ManufacturerDetail/>} />
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
 
