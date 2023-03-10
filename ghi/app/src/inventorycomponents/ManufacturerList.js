@@ -12,6 +12,25 @@ function ManufacturerList() {
     }
   }
 
+  const handleSubmit = async (event) => {
+    const value = event.target.value;
+    const manufacturerUrl = `http://localhost:8100/api/manufacturers/${value}/`;
+
+    const deleteConfig = {
+        method: "delete",
+        headers: {
+            "Content-Type": "application/json"
+        }
+   };
+
+   // Send the delete method to the server with the url to the specific
+   // hat we will delete.
+   const response = await fetch(manufacturerUrl, deleteConfig);
+   const data = await response.json();
+
+   setManufacturers(manufacturers.filter(manufacturer => String(manufacturer.id) !== value));
+}
+
   useEffect(() => {
     getData()
   }, [])
@@ -30,6 +49,9 @@ function ManufacturerList() {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>
+                <td>
+                      <button onClick={handleSubmit} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                </td>
               </tr>
             );
           })}
