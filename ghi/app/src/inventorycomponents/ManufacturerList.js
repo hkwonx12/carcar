@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { id } from 'react-router-dom';
 
 function ManufacturerList() {
+  const { id } = useParams();
   const [manufacturers, setManufacturers] = useState([])
 
   const getData = async () => {
@@ -24,13 +26,13 @@ function ManufacturerList() {
         }
    };
 
-   // Send the delete method to the server with the url to the specific
-   // hat we will delete.
+
    const response = await fetch(manufacturerUrl, deleteConfig);
    const data = await response.json();
 
    setManufacturers(manufacturers.filter(manufacturer => String(manufacturer.id) !== value));
 }
+
 
   useEffect(() => {
     getData()
@@ -52,6 +54,9 @@ function ManufacturerList() {
                 <td><Link to={`/manufacturers/${manufacturer.id}`}>{manufacturer.name}</Link></td>
                 <td>
                   <button onClick={handleSubmit} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                </td>
+                <td>
+                  <Link to={`/manufacturers/edit/${manufacturer.id}`}><button className="btn btn-success">Edit</button></Link>
                 </td>
               </tr>
             );
