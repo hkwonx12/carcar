@@ -1,4 +1,4 @@
-// Return a form for creating a new sales person.
+// Return a form for creating a new sales record.
 
 import React, {useEffect, useState} from 'react';
 

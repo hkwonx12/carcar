@@ -1,9 +1,9 @@
 // This function returns a form for entering a new model into
 // the database.
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
-function ModelForm () {
+function ModelForm() {
     const [makes, setMakes] = useState([]);
     const [formData, setFormData] = useState({
         name: '',
@@ -76,15 +76,15 @@ function ModelForm () {
                         </div>
                         <div className="mb-3">
                             <select onChange={handleChange} required id="manufacturer_id" name="manufacturer_id" value={formData.manufacturer_id} className="form-select">
-                            <option value="">Choose a manufacturer</option>
-                            {makes.map(make => {
-                                return (
-                                    <option key={make.id} value={make.id}>
-                                        {make.name}
-                                    </option>
-                                )
-                            })
-                            }
+                                <option value="">Choose a manufacturer</option>
+                                {makes.map(make => {
+                                    return (
+                                        <option key={make.id} value={make.id}>
+                                            {make.name}
+                                        </option>
+                                    )
+                                })
+                                }
                             </select>
                         </div>
                         <button className="btn btn-primary">Create</button>

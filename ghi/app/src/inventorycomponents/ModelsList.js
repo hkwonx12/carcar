@@ -7,7 +7,6 @@ function ModelsList() {
     const [models, setModels] = useState([]);
 
     const getData = async () => {
-        // Url for getting the list of models
         const modelsUrl = "http://localhost:8100/api/models/";
         // Get the server response
         const response = await fetch(modelsUrl);
@@ -18,6 +17,23 @@ function ModelsList() {
             setModels(data.models);
         }
     }
+
+    const handleDelete = async (event) => {
+        const value = event.target.value;
+        const modelUrl = `http://localhost:8100/api/models/${value}/`;
+
+        const deleteConfig = {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        const response = await fetch(modelUrl, deleteConfig);
+        const data = await response.json();
+
+        setModels(models.filter(model => String(model.id) !== value));
+    };
 
     useEffect(() => {
         getData()
@@ -38,9 +54,19 @@ function ModelsList() {
                     {models.map(model => {
                         return (
                             <tr key={model.id}>
-                                <td>{model.name}</td>
+                                <td>
+                                    <Link to={`/models/${model.id}/`}>
+                                        {model.name}
+                                    </Link>
+                                </td>
                                 <td>{model.manufacturer.name}</td>
                                 <td><img src={model.picture_url} width="200" /></td>
+                                <td>
+                                    <Link to={`/models/edit/${model.id}`}><button type="button" className="btn btn-primary">Edit Model</button></Link>
+                                </td>
+                                <td>
+                                    <button onClick={handleDelete} value={model.id} className="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         )
                     })}
