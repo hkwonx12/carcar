@@ -6,8 +6,9 @@ function ModelDetails() {
     const { id } = useParams();
     const [model, setModel] = useState({
         name: "Loading",
-        manufacturer: {name: "Loading"},
-        picture_url: ""} );
+        manufacturer: { name: "Loading" },
+        picture_url: ""
+    });
 
     let modelData;
     const fetchModelData = async () => {
@@ -35,11 +36,11 @@ function ModelDetails() {
 
     return (
         <>
-            <h1>{ model.name } Details</h1>
+            <h1>{model.name} Details</h1>
             <hr />
-            <h2>Manufacturer: { model.manufacturer.name }</h2>
+            <h2>Manufacturer: {model.manufacturer.name}</h2>
             <p>
-                <img src={ model.picture_url } width="300" />
+                <img src={model.picture_url} width="300" />
             </p>
             <Link to={`/models/edit/${model.id}`}><button type="button" className="btn btn-primary">Edit Model</button></Link>
         </>

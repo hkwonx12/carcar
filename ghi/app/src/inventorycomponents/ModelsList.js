@@ -55,13 +55,13 @@ function ModelsList() {
                             <tr key={model.id}>
                                 <td>
                                     <Link to={`/models/${model.id}/`}>
-                                        { model.name }
+                                        {model.name}
                                     </Link>
                                 </td>
                                 <td>{model.manufacturer.name}</td>
                                 <td><img src={model.picture_url} width="200" /></td>
                                 <td>
-                                <Link to={`/models/edit/${model.id}`}><button type="button" className="btn btn-primary">Edit Model</button></Link>
+                                    <Link to={`/models/edit/${model.id}`}><button type="button" className="btn btn-primary">Edit Model</button></Link>
                                 </td>
                                 <td>
                                     <button onClick={handleDelete} value={model.id} className="btn btn-danger">Delete</button>

@@ -5,11 +5,11 @@ function AutomobileDetail() {
     const { vin } = useParams();
 
     const [auto, setAuto] = useState({
-        id:'',
-        vin:'',
-        model:'',
-        color:'',
-        year:'',
+        id: '',
+        vin: '',
+        model: '',
+        color: '',
+        year: '',
     })
 
     let AutomobileData;
@@ -59,7 +59,7 @@ function AutomobileDetail() {
                         <td>{auto.model?.name}</td>
                         <td>{auto.color}</td>
                         <td>{auto.year}</td>
-                        <td><img src={ auto.model?.picture_url } width="300" /></td>
+                        <td><img src={auto.model?.picture_url} width="300" /></td>
                     </tr>
                 </tbody>
             </table>

@@ -5,10 +5,10 @@ function AutomobileEditForm() {
     const { vin } = useParams()
     const [models, setModels] = useState([])
     const [formData, setFormData] = useState({
-        model:'',
-        manufacturer:'',
-        color:'',
-        year:'',
+        model: '',
+        manufacturer: '',
+        color: '',
+        year: '',
     })
 
 
@@ -16,13 +16,13 @@ function AutomobileEditForm() {
         const url = "http://localhost:8100/api/models/";
         const response = await fetch(url);
         if (response.ok) {
-          const data = await response.json();
-          setModels(data.models);
+            const data = await response.json();
+            setModels(data.models);
         }
-      }
-      useEffect(() => {
+    }
+    useEffect(() => {
         fetchData();
-      }, []);
+    }, []);
 
 
     const handleSubmit = async (event) => {
@@ -41,10 +41,10 @@ function AutomobileEditForm() {
         const response = await fetch(AutomobileUrl, fetchConfig);
         if (response.ok) {
             setFormData({
-                model:'',
-                manufacturer:'',
-                color:'',
-                year:'',
+                model: '',
+                manufacturer: '',
+                color: '',
+                year: '',
             })
         }
     };
@@ -64,26 +64,26 @@ function AutomobileEditForm() {
                     <form onSubmit={handleSubmit} id="edit-automobile-form">
                         <div className="form-floating mb-3">
                             <select value={formData.model_id} onChange={handleChange} required name="model_id" id="model_id" className="form-select">
-                            <option value="">Choose a model</option>
-                            {models.map(model => {
-                            return (
-                                <option key={model.id} value={model.id}>
-                                {model.name}
-                                </option>
-                            );
-                            })}
+                                <option value="">Choose a model</option>
+                                {models.map(model => {
+                                    return (
+                                        <option key={model.id} value={model.id}>
+                                            {model.name}
+                                        </option>
+                                    );
+                                })}
                             </select>
                         </div>
                         <div className="form-floating mb-3">
                             <select value={formData.model_id} onChange={handleChange} required name="model_id" id="model_id" className="form-select">
-                            <option value="">Choose a manufacturer</option>
-                            {models.map(model => {
-                            return (
-                                <option key={model.id} value={model.id}>
-                                {model.manufacturer.name}
-                                </option>
-                            );
-                            })}
+                                <option value="">Choose a manufacturer</option>
+                                {models.map(model => {
+                                    return (
+                                        <option key={model.id} value={model.id}>
+                                            {model.manufacturer.name}
+                                        </option>
+                                    );
+                                })}
                             </select>
                         </div>
                         <div className="form-floating mb-3">

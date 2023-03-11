@@ -23,13 +23,13 @@ function AutomobileList() {
             headers: {
                 "Content-Type": "application/json"
             }
-       };
+        };
 
 
-       const response = await fetch(automobileUrl, deleteConfig);
-       const data = await response.json();
+        const response = await fetch(automobileUrl, deleteConfig);
+        const data = await response.json();
 
-       setAutos(autos.filter(auto => String(auto.vin) !== value));
+        setAutos(autos.filter(auto => String(auto.vin) !== value));
     }
 
 
@@ -60,7 +60,7 @@ function AutomobileList() {
                                 <td>{auto.model.name}</td>
                                 <td>{auto.model.manufacturer.name}</td>
                                 <td>
-                                    <button onClick={handleSubmit} value={auto.id} className="btn btn-danger">Delete</button>
+                                    <button onClick={handleSubmit} value={auto.vin} className="btn btn-danger">Delete</button>
                                 </td>
                                 <td>
                                     <Link to={`/automobiles/edit/${auto.vin}`}><button className="btn btn-success">Edit</button></Link>

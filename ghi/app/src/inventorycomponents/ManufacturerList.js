@@ -1,4 +1,3 @@
-// Display the list of manufacturers and their details.
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,10 +19,10 @@ function ManufacturerList() {
     const manufacturerUrl = `http://localhost:8100/api/manufacturers/${value}/`;
 
     const deleteConfig = {
-        method: "delete",
-        headers: {
-            "Content-Type": "application/json"
-        }
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json"
+      }
     };
 
     const response = await fetch(manufacturerUrl, deleteConfig);

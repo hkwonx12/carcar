@@ -1,9 +1,9 @@
 // This function returns a form for editing a model.
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function ModelEdit () {
+function ModelEdit() {
     const { id } = useParams();
     const [model, setModel] = useState([]);
     const [formData, setFormData] = useState({
