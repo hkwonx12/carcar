@@ -4,6 +4,8 @@ import ManufacturerForm from './inventorycomponents/ManufacturerForm';
 import AutomobileList from './inventorycomponents/AutomobileList';
 import AutomobileForm from './inventorycomponents/AutomobileForm';
 import ModelsList from './inventorycomponents/ModelsList';
+import ModelDetails from './inventorycomponents/ModelDetails';
+import ModelEdit from './inventorycomponents/ModelEdit';
 import ModelForm from './inventorycomponents/ModelForm';
 import TechnicianForm from './servicecomponents/TechnicianForm';
 import AppointmentForm from './servicecomponents/AppointmentForm';
@@ -28,6 +30,8 @@ function App() {
 
           <Route path="models">
             <Route index element={<ModelsList />} />
+            <Route path=":id" element={<ModelDetails />} />
+            <Route path="edit/:id" element={<ModelEdit />} />
             <Route path="new" element={<ModelForm />} />
           </Route>
 
