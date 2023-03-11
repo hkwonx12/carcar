@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 function ManufacturerList() {
   const [manufacturers, setManufacturers] = useState([])
 
@@ -48,9 +49,14 @@ function ManufacturerList() {
           {manufacturers.map(manufacturer => {
             return (
               <tr key={manufacturer.id}>
-                <td>{manufacturer.name}</td>
                 <td>
-                      <button onClick={handleDelete} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                  <Link to={`/manufacturers/${manufacturer.id}`}>{manufacturer.name}</Link>
+                </td>
+                <td>
+                  <button onClick={handleDelete} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                </td>
+                <td>
+                  <Link to={`/manufacturers/edit/${manufacturer.id}`}><button className="btn btn-success">Edit</button></Link>
                 </td>
               </tr>
             );
