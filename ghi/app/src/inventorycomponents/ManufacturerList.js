@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { id } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 function ManufacturerList() {
-  const { id } = useParams();
   const [manufacturers, setManufacturers] = useState([])
 
   const getData = async () => {
