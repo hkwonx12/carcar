@@ -38,6 +38,21 @@ services:
       DATABASE_URL: postgres://inventory:password@database:5432/inventory
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
+  inventory-poller:
+    build:
+      context: ./inventory/poll
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./inventory/poll:/app
+      - ./inventory/api/inventory_project:/app/inventory_project
+      - ./inventory/api/inventory_rest:/app/inventory_rest
+    depends_on:
+      - database
+      - inventory-api
+    environment:
+      DATABASE_URL: postgres://inventory:password@database:5432/inventory
+      WAIT_HOSTS: database:5432,inventory-api:8000
+      WAIT_TIMEOUT: 240
   service-api:
     build:
       context: ./service/api

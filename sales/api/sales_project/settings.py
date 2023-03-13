@@ -48,6 +48,7 @@ MIDDLEWARE = [
 
 ALLOWED_HOSTS = [
     "localhost",
+    "sales-api",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
