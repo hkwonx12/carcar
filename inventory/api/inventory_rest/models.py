@@ -2,11 +2,23 @@ from django.db import models
 from django.urls import reverse
 
 
+# Keep track of sales.
+class SalesVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True)
+    vin = models.CharField(max_length=17, unique=True)
+
+    def __str__(self):
+        return self.vin
+
+
 class Manufacturer(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def get_api_url(self):
         return reverse("api_manufacturer", kwargs={"pk": self.id})
+
+    def __str__(self):
+        return self.name
 
 
 class VehicleModel(models.Model):
@@ -21,6 +33,9 @@ class VehicleModel(models.Model):
 
     def get_api_url(self):
         return reverse("api_vehicle_model", kwargs={"pk": self.id})
+
+    def __str__(self):
+        return self.name
 
 
 class Automobile(models.Model):

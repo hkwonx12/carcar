@@ -31,6 +31,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     "inventory_rest.apps.InventoryRestConfig",
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# This variable lists names other services are allowed to use to refer to this one.
 ALLOWED_HOSTS = [
     "localhost",
     "inventory-api",

@@ -1,7 +1,14 @@
 from common.json import ModelEncoder
 
-from .models import Automobile, Manufacturer, VehicleModel
+from .models import Automobile, Manufacturer, VehicleModel, SalesVO
 
+
+class SalesVOEncoder(ModelEncoder):
+    model = SalesVO
+    properties = [
+        "import_href",
+        "vin"
+    ]
 
 class ManufacturerEncoder(ModelEncoder):
     model = Manufacturer
