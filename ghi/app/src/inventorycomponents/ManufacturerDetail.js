@@ -6,7 +6,7 @@ function ManufacturerDetail() {
     const [manufacturer, setManufacturer] = useState([])
 
     const getData = async () => {
-        const response = await fetch(`http://localhost:8100/api/models/${id}/`);
+        const response = await fetch(`http://localhost:8100/api/manufacturers/${id}/`);
 
         if (response.ok) {
             const data = await response.json();
