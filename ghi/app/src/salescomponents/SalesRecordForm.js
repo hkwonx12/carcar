@@ -10,6 +10,7 @@ function SalesRecordForm () {
         customer: "",
         price: 0.00,
     })
+    
     // Handle when the form changes
     const handleChange = (event) => {
         setFormData({

@@ -26,9 +26,13 @@ function AppointmentsHistory() {
 
 
     const getAppointmentFiltered = () => {
-        return appointments.filter((appointment) =>
-            appointment["vin"].toLowerCase().includes(filterTerm.toLowerCase())
-        );
+        if (filterTerm === "") {
+            return appointments
+        } else {
+            return appointments.filter((appointment) =>
+                appointment["vin"].toLowerCase().includes(filterTerm.toLowerCase())
+            );
+        }
     }
 
 
@@ -66,7 +70,7 @@ function AppointmentsHistory() {
                         </tr>
                     </thead>
                     <tbody>
-                        {getAppointmentFiltered() && getAppointmentFiltered().map((appointment) => {
+                        {getAppointmentFiltered().map((appointment) => {
                             return (
                                 <tr key={appointment.id}>
                                     <td>{appointment.vin}</td>
