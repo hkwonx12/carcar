@@ -62,9 +62,16 @@ def api_salesrecords(request):
     if request.method == "POST":
         new_sale = json.loads(request.body)
 
+        # try:
+        #     SalesRecord.objects.get(auto.vin == new_sale["auto"])
+        # except SalesRecord.DoesNotExist:
+
+
         # Add InventoryVO object for the auto to the sales record
         auto = InventoryVO.objects.get(vin=new_sale["auto"])
         new_sale["auto"] = auto
+
+        
 
         # Add appropriate SalesPerson object to the sales record
         staff = SalesPerson.objects.get(id=new_sale["salesperson"])

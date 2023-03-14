@@ -36,14 +36,16 @@ def api_list_appointments(request, vin=False):
                 {"message": "Invalid tech"},
                 status = 404,
             )
-        try:
-            vin = content["vin"]
-            vip = AutomobileVO.objects.get(vin=vin)
-            if vip:
-                content["vip"] = True
-                appointment = Appointment.objects.create(**content)
-        except AutomobileVO.DoesNotExist:
-            appointment = Appointment.objects.create(**content)
+        
+        
+        vin = content["vin"]
+        vip = AutomobileVO.objects.filter(vin=vin)
+        
+        if vip.length > 0:
+            content["vip"] = True
+        
+        appointment = Appointment.objects.create(**content)
+
         return JsonResponse(
             appointment,
             encoder=AppointmentDetailEncoder,
@@ -73,6 +75,7 @@ def api_detail_appointment(request, id):
             return JsonResponse({"message": "Appointment does not exist"})
     else:
         content = json.loads(request.body)
+
         Appointment.objects.filter(id=id).update(**content)
         try:
             appointment = Appointment.objects.get(id=id)
