@@ -80,6 +80,7 @@ function ListAppointments() {
                         <th>Time</th>
                         <th>Technician</th>
                         <th>Reason</th>
+                        <th>Rental</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +97,7 @@ function ListAppointments() {
                                 <td>{convertTime(appointment.appointment)}</td>
                                 <td>{appointment.technician.name}</td>
                                 <td>{appointment.reason}</td>
+                                <td>{appointment.rental ? "True" : "False"}</td>
                                 <td><button onClick={handleCancel} id={appointment.id} className="btn btn-danger">Cancel</button></td>
                                 <td><button onClick={handleFinish} id={appointment.id} className="btn btn-success">Finished</button></td>
                             </tr>

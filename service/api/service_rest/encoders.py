@@ -24,6 +24,7 @@ class AppointmentListEncoder(ModelEncoder):
         "appointment",
         "reason",
         "vip",
+        "rentals",
         "technician",
     ]
     encoders = {
@@ -38,6 +39,7 @@ class AppointmentDetailEncoder(ModelEncoder):
         "appointment",
         "reason",
         "vip",
+        "rentals",
         "finished",
     ]
     encoders = {

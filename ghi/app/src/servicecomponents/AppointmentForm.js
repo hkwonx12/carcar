@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+
 function AppointmentForm() {
   const [technicians, setTechnicians] = useState([]);
   const [formData, setFormData] = useState({
@@ -8,7 +9,9 @@ function AppointmentForm() {
     appointment: '',
     technician: '',
     reason: '',
+    rentals: '',
   })
+
 
   const fetchData = async () => {
     const url = "http://localhost:8080/api/technicians";
@@ -43,6 +46,7 @@ function AppointmentForm() {
         appointment: '',
         technician: '',
         reason: '',
+        rentals: '',
       })
     }
   };
@@ -53,6 +57,7 @@ function AppointmentForm() {
       [event.target.name]: event.target.value
     })
   }
+
 
   return (
     <div className="row">
@@ -74,7 +79,11 @@ function AppointmentForm() {
             </div>
             <div className="form-floating mb-3">
               <input value={formData.reason} onChange={handleChange} placeholder="reason" required type="text" name="reason" id="reason" className="form-control" />
-              <label htmlFor="reason">Reason</label>
+              <label htmlFor="reason">Reason </label>
+            </div>
+            <div className="form-check mb-3">
+              <input checked={formData.rentals} onChange={(e) => setFormData({...formData, rentals: e.target.checked})} placeholder="rentals" required type="checkbox" name="rentals" id="rentals" className="form-check-input"/>
+              <label htmlFor="rentals">Needs Rental?</label>
             </div>
             <div className="mb-3">
               <select value={formData.technician} onChange={handleChange} required name="technician" id="technician" className="form-select">
@@ -95,5 +104,6 @@ function AppointmentForm() {
     </div>
   )
 }
+
 
 export default AppointmentForm;
