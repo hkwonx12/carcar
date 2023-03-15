@@ -22,6 +22,7 @@ class CustomerEncoder(ModelEncoder):
         "name",
         "address",
         "phone",
+        "customer_num",
         "id",
     ]
 

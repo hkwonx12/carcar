@@ -22,7 +22,7 @@ def api_salesperson(request):
         )
     else:
         # Get and return the list of sales people
-        salespeople = SalesPerson.objects.all()
+        salespeople = SalesPerson.objects.all().order_by('name')
         return JsonResponse(
             {"salespeople": salespeople},
             encoder=SalesPersonEncoder,
@@ -119,7 +119,7 @@ def api_salesrecords(request):
             )
     else:
         # Get and return the list of sales records
-        records = SalesRecord.objects.all()
+        records = SalesRecord.objects.all().order_by('salesperson__name')
         return JsonResponse(
             {"sales_records": records},
             encoder=SalesRecordEncoder,

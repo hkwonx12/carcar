@@ -8,6 +8,7 @@ function CustomerForm () {
         name: "",
         address: "",
         phone: "",
+        customer_num: ""
     })
     // Handle when the form changes
     const handleChange = (event) => {
@@ -36,7 +37,9 @@ function CustomerForm () {
             setFormData({
                 name: "",
                 address: "",
-                phone: ""
+                phone: "",
+                customer_num: ""
+
             });
         } else {
             console.error("*******ERROR. Server response: ", customerDataResponse);
@@ -61,6 +64,10 @@ function CustomerForm () {
                         <div className="mb-3">
                             <label htmlFor="style">Phone Number</label>
                             <input onChange={handleChange} required type="text" id="phone" name="phone" value={formData.phone} className="form-control"/>
+                        </div>
+                         <div className="mb-3">
+                            <label htmlFor="style">Customer Number</label>
+                            <input onChange={handleChange} required type="text" id="customernum" name="customernum" value={formData.customer_num} className="form-control"/>
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>

@@ -9,7 +9,7 @@ function AutomobileList() {
 
         if (response.ok) {
             const data = await response.json();
-            setAutos(data.autos)
+            setAutos(data.autos);
         }
     }
 

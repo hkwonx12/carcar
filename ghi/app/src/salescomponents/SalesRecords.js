@@ -39,7 +39,9 @@ function SalesRecords() {
                         <tr key={sale.id}>
                             <td>{ sale.salesperson.name }</td>
                             <td>{ sale.salesperson.employee_num }</td>
-                            <td>{ sale.customer.name }</td>
+                            <td>
+                                { sale.customer.name } { sale.customer.customer_num }
+                            </td>
                             <td>{ sale.auto.vin }</td>
                             <td>${ sale.price }</td>
                         </tr>

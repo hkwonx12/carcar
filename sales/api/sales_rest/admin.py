@@ -21,7 +21,8 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "address",
-        "phone"
+        "phone",
+        "customer_num"
     )
 
 @admin.register(SalesRecord)

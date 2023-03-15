@@ -15,6 +15,7 @@ class AutomobileAdmin(admin.ModelAdmin):
         "year",
         "vin",
         "model",
+        "sold",
     )
 
 @admin.register(Manufacturer)
