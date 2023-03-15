@@ -26,6 +26,8 @@ function ModelEdit() {
         if (fetchModelResponse.ok) {
             modelData = await fetchModelResponse.json();
             setModel(modelData);
+            formData.name = modelData.name;
+            formData.picture_url = modelData.picture_url;
         } else {
             console.log("*******ERROR. Server response: ", fetchModelResponse);
         };
@@ -81,7 +83,7 @@ function ModelEdit() {
                             <label htmlFor="picture_url" className="form-label">Picture URL</label>
                             <input onChange={handleChange} type="text" placeholder={model.picture_url} className="form-control" name="picture_url" value={formData.picture_url} id="picture_url" />
                         </div>
-                        <button className="btn btn-primary">Create</button>
+                        <button className="btn btn-primary">Edit</button>
                     </form>
                 </div>
             </div>

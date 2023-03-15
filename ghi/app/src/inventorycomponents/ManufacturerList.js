@@ -51,10 +51,10 @@ function ManufacturerList() {
                   <Link to={`/manufacturers/${manufacturer.id}`}>{manufacturer.name}</Link>
                 </td>
                 <td>
-                  <button onClick={handleDelete} value={manufacturer.id} className="btn btn-danger">Delete</button>
+                  <Link to={`/manufacturers/edit/${manufacturer.id}`}><button className="btn btn-success">Edit</button></Link>
                 </td>
                 <td>
-                  <Link to={`/manufacturers/edit/${manufacturer.id}`}><button className="btn btn-success">Edit</button></Link>
+                  <button onClick={handleDelete} value={manufacturer.id} className="btn btn-danger">Delete</button>
                 </td>
               </tr>
             );

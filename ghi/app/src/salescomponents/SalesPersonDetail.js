@@ -32,7 +32,7 @@ function SalesPersonDetail () {
         fetchSalesPersonData();
     }, []);
 
-    // Get the and filter the list of sales records.
+    // Get and filter the list of sales records.
     const fetchSalesRecords = async() => {
             const salesUrl = "http://localhost:8090/api/sales/";
             const salesRecordsResponse = await fetch(salesUrl);

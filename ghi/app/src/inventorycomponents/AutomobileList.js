@@ -40,6 +40,7 @@ function AutomobileList() {
 
     return (
         <div className='container'>
+            <h1>Current Inventory</h1>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -60,10 +61,10 @@ function AutomobileList() {
                                 <td>{auto.model.name}</td>
                                 <td>{auto.model.manufacturer.name}</td>
                                 <td>
-                                    <button onClick={handleSubmit} value={auto.vin} className="btn btn-danger">Delete</button>
+                                    <Link to={`/automobiles/edit/${auto.vin}`}><button className="btn btn-success">Edit</button></Link>
                                 </td>
                                 <td>
-                                    <Link to={`/automobiles/edit/${auto.vin}`}><button className="btn btn-success">Edit</button></Link>
+                                    <button onClick={handleSubmit} value={auto.vin} className="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         );
