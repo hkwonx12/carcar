@@ -1,7 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import SalesPerson, Customer, SalesRecord
+from .models import SalesPerson, Customer, SalesRecord, InventoryVO
+
+@admin.register(InventoryVO)
+class InventoryVOAdmin(admin.ModelAdmin):
+    list_display = (
+        "vin",
+    )
 
 @admin.register(SalesPerson)
 class SalesPersonAdmin(admin.ModelAdmin):

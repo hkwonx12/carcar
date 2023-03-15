@@ -2,51 +2,55 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function AutomobileEditForm() {
-    const { vin } = useParams()
-    const [models, setModels] = useState([])
+    const { vin } = useParams();
+    const [auto, setAuto] = useState([]);
+    const [models, setModels] = useState([]);
     const [formData, setFormData] = useState({
-        model: '',
-        manufacturer: '',
+        model: {},
         color: '',
         year: '',
     })
 
+    // Automobile's details
+    const fetchAuto = async () => {
 
-    const fetchData = async () => {
+        const url = `http://localhost:8100/api/automobiles/${vin}/`;
+        const fetchAuto = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        const response = await fetch(url, fetchAuto);
+        if (response.ok) {
+            const data = await response.json();
+            setAuto(data);
+            formData.model = data.model;
+            formData.color = data.color;
+            formData.year = data.year;
+        } else {
+            console.log("*******ERROR. Server response: ", response);
+        };
+    };
+
+    // List of models for dropdown
+    const fetchModelsList = async () => {
         const url = "http://localhost:8100/api/models/";
-        const response = await fetch(url);
+        const fetchAuto = {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        const response = await fetch(url, fetchAuto);
         if (response.ok) {
             const data = await response.json();
             setModels(data.models);
-        }
-    }
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const AutomobileUrl = `http://localhost:8100/api/automobiles/${vin}/`;
-
-        const fetchConfig = {
-            method: "put",
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        } else {
+            console.log("*******ERROR. Server response: ", response);
         };
-
-        const response = await fetch(AutomobileUrl, fetchConfig);
-        if (response.ok) {
-            setFormData({
-                model: '',
-                manufacturer: '',
-                color: '',
-                year: '',
-            })
-        }
     };
 
     const handleChange = (event) => {
@@ -54,7 +58,36 @@ function AutomobileEditForm() {
             ...formData,
             [event.target.name]: event.target.value
         })
+        console.log("Updating...", formData);
     }
+
+    useEffect(() => {
+        fetchModelsList();
+        fetchAuto();
+    }, []);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const AutomobileUrl = `http://localhost:8100/api/automobiles/${vin}/`;
+
+        const submitConfig = {
+            method: "put",
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const response = await fetch(AutomobileUrl, submitConfig);
+        if (response.ok) {
+            setFormData({
+                model: '',
+                color: '',
+                year: '',
+            })
+        }
+    };
 
     return (
         <div className="row">
@@ -63,24 +96,12 @@ function AutomobileEditForm() {
                     <h1>Edit automobile</h1>
                     <form onSubmit={handleSubmit} id="edit-automobile-form">
                         <div className="form-floating mb-3">
-                            <select value={formData.model_id} onChange={handleChange} required name="model_id" id="model_id" className="form-select">
+                            <select onChange={handleChange} required name="model_id" id="model_id" className="form-select" value={formData.model}>
                                 <option value="">Choose a model</option>
                                 {models.map(model => {
                                     return (
                                         <option key={model.id} value={model.id}>
-                                            {model.name}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <select value={formData.model_id} onChange={handleChange} required name="model_id" id="model_id" className="form-select">
-                                <option value="">Choose a manufacturer</option>
-                                {models.map(model => {
-                                    return (
-                                        <option key={model.id} value={model.id}>
-                                            {model.manufacturer.name}
+                                            {model.manufacturer.name} {model.name}
                                         </option>
                                     );
                                 })}

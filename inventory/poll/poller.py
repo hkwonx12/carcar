@@ -20,10 +20,13 @@ def poll():
             url = "http://sales-api:8000/api/sales/"
             response = requests.get(url)
             content = json.loads(response.content)
+            print("Sales Records: ", content)
 
             # Loop through the list of sales and store each one's
             # href and VIN.
             for auto in content["sales_records"]:
+                print("Auto: ", auto)
+                print("HREF: ", auto["import_href"])
                 SalesVO.objects.update_or_create(
                     import_href = auto["import_href"],
                     defaults={"vin": auto["vin"]},
